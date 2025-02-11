@@ -30,6 +30,10 @@
             top: 0;
             z-index: 1000;
         }
+        .navbar.scrolled {
+    background-color: rgba(51, 51, 51, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
         .menu {
             display: flex;
             list-style: none;
@@ -104,12 +108,73 @@
             color: #555;
         }
         .profile-picture {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin-right: 20px;
-            border: 5px solid #6f6050; /* Coklat tua untuk border */
-        }
+    width: 220px; /* Sedikit lebih besar */
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(138, 75, 8, 0.4); /* Warna glow kecoklatan */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.profile-picture:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(138, 75, 8, 0.6);
+}
+
+        .about-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+    background: linear-gradient(135deg, #fff, #f8f8f8);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.animated-img {
+    transition: transform 0.3s ease-in-out;
+}
+.animated-img:hover {
+    transform: scale(1.05);
+}
+
+.about-text {
+    flex: 1;
+}
+
+.typing-animation {
+    font-size: 32px;
+    font-weight: bold;
+    color: #8b5a2b;
+}
+
+.motto {
+    font-style: italic;
+    font-size: 18px;
+    color: #555;
+}
+
+.divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, #d69e5c, transparent);
+    width: 80px;
+    margin: 10px 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
         #about-skills {
             display: flex;
             flex-wrap: wrap;
@@ -186,7 +251,8 @@
 
 .project-item img {
     width: 100%;
-    height: 200px; /* Tetapkan tinggi agar semua gambar seragam */
+    height: auto; /* Tetapkan tinggi agar semua gambar seragam */
+    aspect-ratio: 16/9; /* Membantu menjaga proporsi */
     object-fit: cover; /* Pastikan gambar tidak terdistorsi */
     border-radius: 8px;
 }
@@ -223,11 +289,11 @@
         }
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto;
+            margin: 6% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-            max-width: 600px; /* Batasi lebar maksimum modal di desktop */
+            max-width: 800px; /* Batasi lebar maksimum modal di desktop */
         }
         .modal-content h3 {
             margin-top: 0;
@@ -264,10 +330,12 @@
     text-decoration: none;
     display: inline-block;
     transition: background-color 0.3s ease;
+    white-space: nowrap; /* Supaya teks tidak terpotong */
 }
 
 .cv:hover {
     background-color: #c49a6c; /* Warna coklat muda */
+    transform: scale(1.05);
 }
 .logo {
     font-size: 24px;
@@ -300,11 +368,33 @@
 @keyframes typing {
     0% { width: 0; }
     50% { width: 180px; }
-    80% { width: 180px; }
+    80% { width: 320px; }
     100% { width: 0; }
 }
 @keyframes blinkCursor {
     50% { border-color: transparent; }
+}
+.social-icons a {
+    color: #333;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #8a4b08; /* Warna saat hover */
+}
+
+.cv-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #8a4b08;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.cv-button:hover {
+    background-color: #6c3b06;
 }
 
     </style>
@@ -327,31 +417,44 @@
         <div class="about-content">
             <img src="profile1.jpg" alt="Profile Picture" class="profile-picture" loading="lazy">
             <div>
-                <h2 class="typing-animation" style="margin-top: 10px;">Fauzia Ibaiti</h2>
+                <h3 class="typing-animation" style="margin-top: 10px;">Hi, saya Fauzia Ibaiti</h3>
+                <p class="motto" style="margin-top: 15px;">"Perfection is Achieved Through Continuous Design."</p>
+                <hr class="divider" style="margin-bottom: 10px;">
                 <p style="margin-bottom: 20px;">
-                    Saya memiliki keahlian dalam pengembangan dan desain web, dengan fokus utama pada front-end development dan UI/UX. 
-                    Saya berpengalaman dalam membangun situs web yang responsif, dinamis, dan user-friendly, dengan mengutamakan estetika 
-                    serta fungsionalitas untuk menciptakan pengalaman pengguna yang optimal. Kemampuan saya mencakup penggunaan berbagai teknologi 
-                    dan framework modern guna memastikan desain yang inovatif dan berkualitas tinggi. Saya selalu berusaha untuk mengembangkan keterampilan 
-                    serta mengikuti tren terbaru dalam industri teknologi, sehingga dapat memberikan kontribusi yang maksimal dalam setiap proyek yang saya kerjakan.
+                    Seorang UI/UX designer dan front-end developer dengan passion mendalam dalam menciptakan desain yang estetis, fungsional, dan user-friendly.  
+                    Saya percaya bahwa setiap detail kecil dalam desain dapat membawa pengalaman yang luar biasa bagi pengguna.
                 </p>
-            </div>
-            <div class="flex items-center">
-                <a href="https://www.instagram.com/thisiszia._?igsh=N2h5aGQxdGtxcDJz" aria-label="Instagram Profile" title="Instagram">
-                    <i class="fab fa-instagram fa-2x mt-2 mr-5 hover:text-gray-400"></i>
-                </a>
-                <a href="https://www.tiktok.com/@thisiszia._?lang=id-ID" aria-label="TikTok Profile" title="Tiktok">
-                    <i class="fab fa-tiktok fa-2x mt-2 mr-3 hover:text-gray-400"></i>
-                </a>
-                <a href="fauziaskp@gmail.com" aria-label="Email" title="Email">
-                    <i class="fas fa-envelope fa-2x mt-2 mr-3 ml-2 hover:text-gray-400"></i>
-                </a>
-                <a href="cv.pdf" class="cv mt-2 ml-3" target="_blank" download="Fauzia_Ibaiti_CV.pdf" title="CV">
-                    Lihat CV
-                </a>                             
+                <p style="margin-bottom: 20px;">
+                    Dengan pengalaman dalam pengembangan web dan desain interaktif, saya senang menciptakan antarmuka yang intuitif, responsif, dan menarik.  
+                    Saya selalu mencari cara baru untuk meningkatkan estetika serta performa aplikasi berbasis web.
+                </p>
+    
+                <!-- Social Media Icons & CV Button (Di ujung kiri) -->
+                <div class="social-icons" style="display: flex; gap: 15px; margin-top: 20px;">
+                    <a href="https://www.instagram.com/thisiszia._?igsh=N2h5aGQxdGtxcDJz" 
+                        aria-label="Instagram Profile" title="Instagram" target="_blank">
+                        <i class="fab fa-instagram fa-2x hover:text-gray-400"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@thisiszia._?lang=id-ID" 
+                        aria-label="TikTok Profile" title="Tiktok" target="_blank">
+                        <i class="fab fa-tiktok fa-2x hover:text-gray-400"></i>
+                    </a>
+                    <a href="mailto:fauziaskp@gmail.com" 
+                        aria-label="Email" title="Email">
+                        <i class="fas fa-envelope fa-2x hover:text-gray-400"></i>
+                    </a>
+                </div>
+                
+                <!-- CV Button (Di bawah ikon sosial media, sejajar ke kiri) -->
+                <div style="margin-top: 15px;">
+                    <a href="cv.pdf" class="cv-button" target="_blank" download="Fauzia_Ibaiti_CV.pdf" title="CV">
+                        Lihat CV
+                    </a>
+                </div>
             </div>            
         </div>
-    </section>    
+    </section>
+    
 
     <hr class="section-divider">
     <section id="skills">
@@ -485,8 +588,8 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal5')">&times;</span>
             <img src="project 5.png" alt="Project 5 Image" style="border-radius: 5px;">
-            <h3 style="margin-top: 10px;"><b>Website Presensi Magang Sekretariat DPRD Kab. Banjar</b></h3>
-            <p>Platform yang memudahkan siswa/i dalam melakukan peminjaman buku secara online, tanpa perlu datang langsung ke perpustakaan.</p>
+            <h3 style="margin-top: 10px;"><b>Desaign UI/UX Website Presensi Magang Sekretariat DPRD Kab. Banjar</b></h3>
+            <p>Proyek ini bertujuan untuk merancang antarmuka dan pengalaman pengguna pada sistem absensi magang di Sekretariat DPRD Kabupaten Banjar. Desain ini dibuat untuk memastikan proses presensi menjadi lebih efisien, modern, dan mudah digunakan oleh peserta magang serta pihak terkait.</p>
         </div>
     </div>
 
@@ -551,5 +654,11 @@
             });
         }
     </script>    
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
 </body>
 </html>
