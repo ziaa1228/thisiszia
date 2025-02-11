@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Fauzia Ibaiti</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS umum */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #f0f4f8; /* Warna latar belakang yang lebih cerah */
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #333;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 10px 0; /* Menambahkan padding atas dan bawah */
+            text-align: center; /* Memusatkan teks */
+            transition: all 0.3s ease-in-out;
+        }
+        .menu li {
+            margin: 0 25px;
+        }
+        .menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    padding-bottom: 5px;
+}
+        .menu li a:hover {
+            color: #d69e5c; /* Coklat muda untuk hover */
+            border-bottom: 2px solid #d69e5c; /* Coklat muda untuk border bawah */
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                right: 10px;
+                top: 50px;
+                background-color: #333;
+                width: 200px;
+                border-radius: 20px;
+                padding: 10px 0; /* Menambahkan padding atas dan bawah untuk menu mobile */
+                text-align: center; /* Memusatkan teks */
+            }
+            .menu li {
+                margin: 10px 0; /* Menambahkan margin vertikal untuk setiap item menu */
+            }
+            .menu.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .project-item {
+                width: 100%; /* Mengatur proyek agar memenuhi lebar di tampilan mobile */
+            }
+        }
+        section {
+            padding: 50px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        section p {
+            font-size: 16px;
+            color: #555;
+        }
+        .profile-picture {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 5px solid #6f6050; /* Coklat tua untuk border */
+        }
+        #about-skills {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #f4f4f4;
+            max-width: 100%;
+        }
+        .about-content, .skills-content {
+            flex: 1;
+            min-width: 0;
+            max-width: 100%;
+        }
+        .about-content p {
+            text-align: justify;
+            margin: auto;
+            line-height: 1.6;
+        }
+        .skill {
+            margin-bottom: 15px;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 18px;
+            background-color: #4caf50;
+            text-align: center;
+            line-height: 18px;
+            font-size: medium;
+            color: white;
+            border-radius: 20px 0 0 20px;
+            animation: fillProgress 1.5s ease-in-out;
+        }
+        @keyframes fillProgress {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 proyek per baris */
+    gap: 20px; /* Jarak antar proyek */
+    padding: 20px;
+}
+
+/* Responsif untuk layar lebih kecil */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 proyek per baris */
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* 1 proyek per baris */
+    }
+}
+
+.project-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, border-color 0.3s;
+    border: 2px solid #d69e5c;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    border-color: #8b5a2b;
+}
+
+.project-item img {
+    width: 100%;
+    height: 200px; /* Tetapkan tinggi agar semua gambar seragam */
+    object-fit: cover; /* Pastikan gambar tidak terdistorsi */
+    border-radius: 8px;
+}
+
+
+        .project-item h3 {
+            font-size: 20px;
+            margin: 10px 0 10px;
+            color: #333;
+        }
+        .view-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #8b5a2b; /* Coklat tua */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .view-more:hover {
+            background-color: #d69e5c; /* Coklat muda untuk hover */
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px; /* Batasi lebar maksimum modal di desktop */
+        }
+        .modal-content h3 {
+            margin-top: 0;
+        }
+        .modal-content p {
+            margin: 10px 0;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .cv {
+    background-color: #8b5a2b;
+    padding: 10px 20px;
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.cv:hover {
+    background-color: #c49a6c; /* Warna coklat muda */
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #a3907a, #ffffff);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    from {
+        background-position: -200% 0;
+    }
+    to {
+        background-position: 200% 0;
+    }
+}
+.typing-animation {
+    font-size: 28px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #000; /* Efek kursor */
+    width: 0;
+    animation: typing 3s steps(20) infinite, blinkCursor 1s step-end infinite;
+}
+
+@keyframes typing {
+    0% { width: 0; }
+    50% { width: 180px; }
+    80% { width: 180px; }
+    100% { width: 0; }
+}
+@keyframes blinkCursor {
+    50% { border-color: transparent; }
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><b>Fauzia Ibaiti</b></div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            &#9776;
+        </button>
+        <ul class="menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="about-content">
+            <img src="profile1.jpg" alt="Profile Picture" class="profile-picture" loading="lazy">
+            <div>
+                <h2 class="typing-animation" style="margin-top: 10px;">Fauzia Ibaiti</h2>
+                <p style="margin-bottom: 20px;">
+                    Saya memiliki keahlian dalam pengembangan dan desain web, dengan fokus utama pada front-end development dan UI/UX. 
+                    Saya berpengalaman dalam membangun situs web yang responsif, dinamis, dan user-friendly, dengan mengutamakan estetika 
+                    serta fungsionalitas untuk menciptakan pengalaman pengguna yang optimal. Kemampuan saya mencakup penggunaan berbagai teknologi 
+                    dan framework modern guna memastikan desain yang inovatif dan berkualitas tinggi. Saya selalu berusaha untuk mengembangkan keterampilan 
+                    serta mengikuti tren terbaru dalam industri teknologi, sehingga dapat memberikan kontribusi yang maksimal dalam setiap proyek yang saya kerjakan.
+                </p>
+            </div>
+            <div class="flex items-center">
+                <a href="https://www.instagram.com/thisiszia._?igsh=N2h5aGQxdGtxcDJz" aria-label="Instagram Profile" title="Instagram">
+                    <i class="fab fa-instagram fa-2x mt-2 mr-5 hover:text-gray-400"></i>
+                </a>
+                <a href="https://www.tiktok.com/@thisiszia._?lang=id-ID" aria-label="TikTok Profile" title="Tiktok">
+                    <i class="fab fa-tiktok fa-2x mt-2 mr-3 hover:text-gray-400"></i>
+                </a>
+                <a href="fauziaskp@gmail.com" aria-label="Email" title="Email">
+                    <i class="fas fa-envelope fa-2x mt-2 mr-3 ml-2 hover:text-gray-400"></i>
+                </a>
+                <a href="cv.pdf" class="cv mt-2 ml-3" target="_blank" download="Fauzia_Ibaiti_CV.pdf" title="CV">
+                    Lihat CV
+                </a>                             
+            </div>            
+        </div>
+    </section>    
+
+    <hr class="section-divider">
+    <section id="skills">
+        <div class="skills-content">
+            <h2>Skills</h2>
+            <div class="skill">
+                <h3>HTML</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;">90%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>PHP</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;">80%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>CSS Vanilla</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;">90%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>Tailwind CSS</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;">90%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>Laravel</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;">80%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>Flutter</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 65%;">65%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>Dart</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 65%;">65%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>Figma</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 85%;">85%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>Canva</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;">80%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-item">
+                <img src="project 1.jpg" alt="Project 1 Image">
+                <h3><b>Selera Senja</b></h3>
+                <a href="#" class="view-more" data-modal="modal1">Lihat Selengkapnya</a>
+            </div>
+            <div class="project-item">
+                <img src="project 2.jpg" alt="Project 2 Image">
+                <h3><b>Sakura Bites</b></h3>
+                <a href="#" class="view-more" data-modal="modal2">Lihat Selengkapnya</a>
+            </div>
+            <div class="project-item">
+                <img src="project 3.jpg" alt="Project 3 Image">
+                <h3><b>Moirai Store</b></h3>
+                <a href="#" class="view-more" data-modal="modal3">Lihat Selengkapnya</a>
+            </div>
+            <div class="project-item">
+                <img src="project 4.png" alt="Project 4 Image">
+                <h3><b>Website Perpustakaan SMK Telkom Banjarbaru</b></h3>
+                <a href="#" class="view-more" data-modal="modal4">Lihat Selengkapnya</a>
+            </div>
+            <div class="project-item">
+                <img src="project 5.png" alt="Project 5 Image">
+                <h3><b>Website Presensi Magang Sekretariat DPRD Kab. Banjar</b></h3>
+                <a href="#" class="view-more" data-modal="modal5">Lihat Selengkapnya</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal untuk deskripsi proyek -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <img src="project 1.jpg" alt="Project 1 Image" style="border-radius: 5px;">
+            <h3 style="margin-top: 10px;"><b>Selera Senja</b></h3>
+            <p>Aplikasi pemesanan online yang dirancang khusus untuk kafe "Selera Senja". Aplikasi ini memungkinkan pengguna untuk melihat menu lengkap kafe dan memesan makanan serta minuman favorit mereka langsung dari rumah.</p>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <img src="project 2.jpg" alt="Project 2 Image" style="border-radius: 5px;">
+            <h3 style="margin-top: 10px;"><b>Sakura Bites</b></h3>
+            <p>Aplikasi pemesanan online yang dirancang khusus untuk restoran dengan menu khasnya. Aplikasi ini memungkinkan pengguna untuk menjelajahi seluruh menu yang ditawarkan oleh restoran dan memesan makanan langsung dari rumah.</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <img src="project 3.jpg" alt="Project 3 Image" style="border-radius: 5px;">
+            <h3 style="margin-top: 10px;"><b>Moirai Store</b></h3>
+            <p>Sebuah website e-commerce yang fokus pada penjualan fashion wanita. Website ini memungkinkan pengguna untuk menjelajahi berbagai koleksi busana terbaru dan melakukan pemesanan secara online dari rumah.</p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <img src="project 4.png" alt="Project 4 Image" style="border-radius: 5px;">
+            <h3 style="margin-top: 10px;"><b>Website Perpustakaan SMK Telkom Banjarbaru</b></h3>
+            <p>Platform yang memudahkan siswa/i dalam melakukan peminjaman buku secara online, tanpa perlu datang langsung ke perpustakaan.</p>
+        </div>
+    </div>
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal5')">&times;</span>
+            <img src="project 5.png" alt="Project 5 Image" style="border-radius: 5px;">
+            <h3 style="margin-top: 10px;"><b>Website Presensi Magang Sekretariat DPRD Kab. Banjar</b></h3>
+            <p>Platform yang memudahkan siswa/i dalam melakukan peminjaman buku secara online, tanpa perlu datang langsung ke perpustakaan.</p>
+        </div>
+    </div>
+
+    <footer id="contact" class="bg-gray-900 text-white py-4 text-center">
+        <p>&copy; 2025 Fauzia Ibaiti. All rights reserved.</p>
+        <div class="flex justify-center mt-2 space-x-4">
+            <a href="https://www.instagram.com/thisiszia._?igsh=N2h5aGQxdGtxcDJz" 
+               aria-label="Instagram Profile" 
+               title="Instagram" 
+               class="text-white hover:text-gray-400 text-2xl">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@thisiszia._?lang=id-ID" 
+               aria-label="TikTok Profile" 
+               title="TikTok" 
+               class="text-white hover:text-gray-400 text-2xl">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="fauziaskp@gmail.com" 
+               aria-label="Email" 
+               title="Email" 
+               class="text-white hover:text-gray-400 text-2xl">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <p class="mt-2 text-sm">Email: <a href="fauziaskp@gmail.com" class="text-blue-400 hover:underline">fauziaskp@gmail.com</a></p>
+    </footer>        
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.querySelector(".menu-toggle");
+            const menu = document.querySelector(".menu");
+    
+            menuToggle.addEventListener("click", function () {
+                menu.classList.toggle("active");
+            });
+
+            // Menangani klik pada tombol "Lihat Selengkapnya"
+            const viewMoreButtons = document.querySelectorAll('.view-more');
+            viewMoreButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const modalId = this.getAttribute('data-modal');
+                    document.getElementById(modalId).style.display = "block";
+                });
+            });
+        });
+
+        // Fungsi untuk menutup modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Menutup modal saat mengklik di luar modal
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        }
+    </script>    
+</body>
+</html>
