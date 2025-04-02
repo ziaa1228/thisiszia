@@ -401,15 +401,14 @@
     overflow: hidden;
     border-right: 3px solid #000; /* Efek kursor */
     width: 0;
-    animation: typing 3s steps(20) infinite, blinkCursor 1s step-end infinite;
+    animation: typing 3s steps(20) forwards, blinkCursor 1s step-end infinite;
 }
 
 @keyframes typing {
     0% { width: 0; }
-    50% { width: 180px; }
-    80% { width: 320px; }
-    100% { width: 0; }
+    100% { width: 320px; } /* Panjang maksimal teks */
 }
+
 @keyframes blinkCursor {
     50% { border-color: transparent; }
 }
