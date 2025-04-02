@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <title>Portfolio - Fauzia Ibaiti</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>thisiszia</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -13,17 +13,35 @@
         * {
             box-sizing: border-box;
         }
+        .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
         body {
+            font-size: 1rem; /* Menggunakan rem untuk ukuran font responsif */
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
+        @media (max-width: 480px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+    .menu li {
+        margin: 0 15px;
+    }
+    .menu li a {
+        font-size: 16px;
+    }
+}
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
+            padding: 10px 15px; /* Lebih kecil untuk perangkat kecil */
             background-color: #333;
             color: #fff;
             position: sticky;
@@ -65,24 +83,25 @@
             cursor: pointer;
         }
         @media (max-width: 768px) {
-            .menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                right: 10px;
-                top: 50px;
-                background-color: #333;
-                width: 200px;
-                border-radius: 20px;
-                padding: 10px 0; /* Menambahkan padding atas dan bawah untuk menu mobile */
-                text-align: center; /* Memusatkan teks */
-            }
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right: 10px;
+        top: 50px;
+        background-color: #333;
+        width: 200px;
+        border-radius: 20px;
+        padding: 10px 0;
+        text-align: center;
+    }
             .menu li {
                 margin: 10px 0; /* Menambahkan margin vertikal untuk setiap item menu */
             }
             .menu.active {
-                display: flex;
-            }
+        display: flex;
+    }
+
             .menu-toggle {
                 display: block;
             }
@@ -90,6 +109,16 @@
                 width: 100%; /* Mengatur proyek agar memenuhi lebar di tampilan mobile */
             }
         }
+        @media (max-width: 768px) {
+    section {
+        padding: 20px; /* Mengurangi padding untuk perangkat kecil */
+        margin: 10px;
+    }
+    .divider {
+        width: 60px; /* Menyesuaikan panjang divider */
+    }
+}
+
         section {
             padding: 50px;
             background-color: #f4f4f4;
@@ -98,7 +127,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         section h2 {
-            font-size: 28px;
+            font-size: 2rem; /* Menggunakan rem untuk ukuran font yang responsif */
             margin-bottom: 10px;
             font-weight: bold;
             color: #333;
@@ -181,6 +210,17 @@
             background-color: #f4f4f4;
             max-width: 100%;
         }
+        @media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        padding: 20px;  /* Menyesuaikan padding di layar kecil */
+        animation: fadeInUp 1.5s ease-out forwards;
+    }
+    .profile-picture {
+        width: 180px; /* Ukuran gambar lebih kecil di layar kecil */
+        height: 180px;
+    }
+}
         .about-content, .skills-content {
             flex: 1;
             min-width: 0;
@@ -412,7 +452,6 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-
     <section id="about">
         <div class="about-content">
             <img src="profile1.jpg" alt="Profile Picture" class="profile-picture" loading="lazy">
@@ -455,7 +494,6 @@
         </div>
     </section>
     
-
     <hr class="section-divider">
     <section id="skills">
         <div class="skills-content">
@@ -522,27 +560,27 @@
         <div class="projects-grid">
             <div class="project-item">
                 <img src="project 1.jpg" alt="Project 1 Image">
-                <h3><b>Design UI/UX app Selera Senja</b></h3>
+                <h3><b>Selera Senja</b></h3>
                 <a href="#" class="view-more" data-modal="modal1">Lihat Selengkapnya</a>
             </div>
             <div class="project-item">
                 <img src="project 2.jpg" alt="Project 2 Image">
-                <h3><b>Design UI/UX app Sakura Bites</b></h3>
+                <h3><b>Sakura Bites</b></h3>
                 <a href="#" class="view-more" data-modal="modal2">Lihat Selengkapnya</a>
             </div>
             <div class="project-item">
                 <img src="project 3.jpg" alt="Project 3 Image">
-                <h3><b>Front End Website Moirai Store</b></h3>
+                <h3><b>Moirai Store</b></h3>
                 <a href="#" class="view-more" data-modal="modal3">Lihat Selengkapnya</a>
             </div>
             <div class="project-item">
                 <img src="project 4.png" alt="Project 4 Image">
-                <h3><b>Design UI/UX dan Front End Website Perpustakaan SMK Telkom Banjarbaru</b></h3>
+                <h3><b>Website Perpustakaan SMK Telkom Banjarbaru</b></h3>
                 <a href="#" class="view-more" data-modal="modal4">Lihat Selengkapnya</a>
             </div>
             <div class="project-item">
                 <img src="project 5.png" alt="Project 5 Image">
-                <h3><b>Design UI/UX Website Presensi Magang Sekretariat DPRD Kab. Banjar</b></h3>
+                <h3><b>Website Presensi Magang Sekretariat DPRD Kab. Banjar</b></h3>
                 <a href="#" class="view-more" data-modal="modal5">Lihat Selengkapnya</a>
             </div>
         </div>
@@ -553,7 +591,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal1')">&times;</span>
             <img src="project 1.jpg" alt="Project 1 Image" style="border-radius: 5px;">
-            <h3 style="margin-top: 10px;"><b>Design UI/UX app Selera Senja</b></h3>
+            <h3 style="margin-top: 10px;"><b>Selera Senja</b></h3>
             <p>Aplikasi pemesanan online yang dirancang khusus untuk kafe "Selera Senja". Aplikasi ini memungkinkan pengguna untuk melihat menu lengkap kafe dan memesan makanan serta minuman favorit mereka langsung dari rumah.</p>
         </div>
     </div>
@@ -562,7 +600,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal2')">&times;</span>
             <img src="project 2.jpg" alt="Project 2 Image" style="border-radius: 5px;">
-            <h3 style="margin-top: 10px;"><b>Design UI/UX app Sakura Bites</b></h3>
+            <h3 style="margin-top: 10px;"><b>Sakura Bites</b></h3>
             <p>Aplikasi pemesanan online yang dirancang khusus untuk restoran dengan menu khasnya. Aplikasi ini memungkinkan pengguna untuk menjelajahi seluruh menu yang ditawarkan oleh restoran dan memesan makanan langsung dari rumah.</p>
         </div>
     </div>
@@ -571,7 +609,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal3')">&times;</span>
             <img src="project 3.jpg" alt="Project 3 Image" style="border-radius: 5px;">
-            <h3 style="margin-top: 10px;"><b>Front End Website Moirai Store</b></h3>
+            <h3 style="margin-top: 10px;"><b>Moirai Store</b></h3>
             <p>Sebuah website e-commerce yang fokus pada penjualan fashion wanita. Website ini memungkinkan pengguna untuk menjelajahi berbagai koleksi busana terbaru dan melakukan pemesanan secara online dari rumah.</p>
         </div>
     </div>
@@ -580,7 +618,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal4')">&times;</span>
             <img src="project 4.png" alt="Project 4 Image" style="border-radius: 5px;">
-            <h3 style="margin-top: 10px;"><b>Design UI/UX dan Front End Website Perpustakaan SMK Telkom Banjarbaru</b></h3>
+            <h3 style="margin-top: 10px;"><b>Website Perpustakaan SMK Telkom Banjarbaru</b></h3>
             <p>Platform yang memudahkan siswa/i dalam melakukan peminjaman buku secara online, tanpa perlu datang langsung ke perpustakaan.</p>
         </div>
     </div>
@@ -621,11 +659,11 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const menuToggle = document.querySelector(".menu-toggle");
-            const menu = document.querySelector(".menu");
-    
-            menuToggle.addEventListener("click", function () {
-                menu.classList.toggle("active");
+            const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+
+    menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('active');
             });
 
             // Menangani klik pada tombol "Lihat Selengkapnya"
